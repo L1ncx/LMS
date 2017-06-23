@@ -2,22 +2,19 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Infor.LMS.Core
+namespace Infor.LMS.Data
 {
-    public class LevelManager
+    public class LevelRepository: ILevelRepository
     {
-        private string _connStr;
+        private readonly string _connStr;
 
-        public LevelManager()
+        public LevelRepository()
         {
             _connStr = @"Data Source=(localdb)\v13.0;Initial Catalog=LMSData;Integrated Security=True";
-            
+
         }
-        public List<Level> GetAllLevels()
+        public List<Level> GetAll()
         {
             var levels = new List<Level>();
             // runs stored proc and returns data to main page
@@ -49,8 +46,7 @@ namespace Infor.LMS.Core
             return levels;
         }
 
-        
-        public void AddLevel(Level level)
+        public void Add(Level level)
         {
             using (var connection = new SqlConnection(_connStr))
             {
@@ -59,7 +55,7 @@ namespace Infor.LMS.Core
 
                 SqlCommand cmd = new SqlCommand(sql, connection);
                 cmd.Parameters.Add("@param2", SqlDbType.NVarChar, 50).Value = level.LevelName;
-               
+
                 cmd.Parameters.Add("@param3", SqlDbType.Int).Value = level.ParentId ?? (object)DBNull.Value;
                 cmd.Parameters.Add("@param4", SqlDbType.VarChar, 5).Value = level.LevelIMSId;
 
@@ -67,5 +63,11 @@ namespace Infor.LMS.Core
                 cmd.ExecuteNonQuery();
             }
         }
+    }
+
+    public interface ILevelRepository
+    {
+        List<Level> GetAll();
+        void Add(Level level);
     }
 }

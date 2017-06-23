@@ -48,15 +48,21 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LevelServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Infor.LMS.Web\Infor.LMS.Web.csproj">
-      <Project>{d27ac0fc-d228-4531-a367-2f403528cd97}</Project>
-      <Name>RiskAssessment.Web</Name>
+    <ProjectReference Include="..\Infor.LMS.Core\Infor.LMS.Core.csproj">
+      <Project>{8b110e20-6f79-4640-ac8a-93a349ffeecf}</Project>
+      <Name>Infor.LMS.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infor.LMS.Data\Infor.LMS.Data.csproj">
+      <Project>{ef276849-d183-4881-807a-1af622d05e16}</Project>
+      <Name>Infor.LMS.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -2,17 +2,23 @@
 using System.Linq;
 using System.Web.Mvc;
 using Infor.LMS.Core;
+using Infor.LMS.Data;
 using Infor.LMS.Web.Models;
 
 namespace Infor.LMS.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ILevelService _levelService;
+
+        public HomeController(ILevelService levelService)
+        {
+            _levelService = levelService;
+        }
         public ActionResult Index()
         {
-            var levelManager = new LevelManager();
 
-            var levels = levelManager.GetAllLevels()
+            var levels = _levelService.GetAllLevels()
                 .Select(l => new SelectListItem
                     {Text = l.LevelName, Value = l.LevelId.ToString()})
                 .ToList();
@@ -27,9 +33,8 @@ namespace Infor.LMS.Web.Controllers
 
         public ActionResult GetLevels()
         {
-            var levelManager = new LevelManager();
 
-            var levels = levelManager.GetAllLevels()
+            var levels = _levelService.GetAllLevels()
                 .Select(s => new LevelTreeModel()
                 {
                     id = s.LevelId.ToString(),
@@ -56,10 +61,9 @@ namespace Infor.LMS.Web.Controllers
                         LevelIMSId = levelViewModel.LevelIMSId
                     };
 
-                    var levelManager = new LevelManager();
 
 
-                    levelManager.AddLevel(level);
+                    _levelService.AddLevel(level);
                 }
 
                 return RedirectToAction("Index");
