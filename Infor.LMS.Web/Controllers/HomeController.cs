@@ -31,6 +31,16 @@ namespace RiskAssessment.Web.Models
             return View(lvm);
         }
 
+        public ActionResult Nodes()
+        {
+            var nodes = new List<JsTreeModel>();
+            nodes.Add(new JsTreeModel() {id = "101", parent = "#", text = "Simple root node"});
+            nodes.Add(new JsTreeModel() {id = "102", parent = "#", text = "Root node 1"});
+            nodes.Add(new JsTreeModel() {id = "103", parent = "102", text = "Child 1"});
+            nodes.Add(new JsTreeModel() {id = "104", parent = "102", text = "Child 2"});
+            return Json(nodes, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddLevel(AddLevelModel levelViewModel)
@@ -60,6 +70,7 @@ namespace RiskAssessment.Web.Models
                 throw;
             }
         }
+
 
     }
 }
