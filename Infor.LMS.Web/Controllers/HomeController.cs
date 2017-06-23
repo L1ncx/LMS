@@ -14,31 +14,24 @@ namespace RiskAssessment.Web.Models
 
         public ActionResult Index()
         {
-            var levelManager = new LevelManager();
+            
 
-            var levels = levelManager.GetAllLevels().Select(s => new LevelModel()
-            {
-                LevelId = s.LevelId,
-                ParentId = s.ParentId.GetValueOrDefault(),
-                LevelIMSId = s.LevelIMSId,
-                LevelName = s.LevelName
-            }).ToList();
-
-            LevelViewModel lvm = new LevelViewModel();
-            lvm.Levels = levels;
-            lvm.AddLevel = new AddLevelModel();
-
-            return View(lvm);
+            return View(new LevelViewModel());
         }
 
-        public ActionResult Nodes()
+        public ActionResult GetLevels()
         {
-            var nodes = new List<JsTreeModel>();
-            nodes.Add(new JsTreeModel() {id = "101", parent = "#", text = "Simple root node"});
-            nodes.Add(new JsTreeModel() {id = "102", parent = "#", text = "Root node 1"});
-            nodes.Add(new JsTreeModel() {id = "103", parent = "102", text = "Child 1"});
-            nodes.Add(new JsTreeModel() {id = "104", parent = "102", text = "Child 2"});
-            return Json(nodes, JsonRequestBehavior.AllowGet);
+            var levelManager = new LevelManager();
+
+            var levels = levelManager.GetAllLevels()
+                .Select(s => new JsTreeModel()
+                {
+                    id = s.LevelId.ToString(),
+                    parent = s.ParentId == null ? "#" : s.ParentId.GetValueOrDefault().ToString(),
+                    text = s.LevelName,
+                });
+         
+            return Json(levels, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

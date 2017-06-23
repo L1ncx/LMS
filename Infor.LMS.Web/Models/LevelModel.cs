@@ -15,6 +15,11 @@ namespace RiskAssessment.Web.Models
 
     public class LevelViewModel
     {
+        public LevelViewModel()
+        {
+            Levels = new List<LevelModel>();
+            AddLevel = new AddLevelModel();
+        }
         public List<LevelModel> Levels { get; set; }
         public AddLevelModel AddLevel { get; set; }
 
