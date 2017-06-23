@@ -14,9 +14,19 @@ namespace RiskAssessment.Web.Models
 
         public ActionResult Index()
         {
-            
+            var levelManager = new LevelManager();
 
-            return View(new LevelViewModel());
+            var levels = levelManager.GetAllLevels().Select(l => new LevelModel()
+            {
+                LevelId = l.LevelId,
+                LevelName = l.LevelName
+            }).ToList();
+
+            var addNewLevel = new AddLevelModel()
+            {
+                ParentLevels = levels.Select(l => new SelectListItem() { Text = l.LevelName, Value = l.LevelId.ToString() }).ToList()
+            };
+            return View(new LevelViewModel() { Levels =  levels, AddLevel = addNewLevel });
         }
 
         public ActionResult GetLevels()

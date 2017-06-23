@@ -49,18 +49,18 @@ namespace Infor.LMS.Core
             return levels;
         }
 
+        
         public void AddLevel(Level level)
         {
             using (var connection = new SqlConnection(_connStr))
             {
                 connection.Open();
-                var sql = "INSERT INTO Levels(LevelId,LevelName,ParentLevelId,LevelIMSId) VALUES(@param1,@param2,@param3,@param4)";
+                var sql = "INSERT INTO Levels(LevelName,ParentLevelId,LevelIMSId) VALUES(@param2,@param3,@param4)";
 
                 SqlCommand cmd = new SqlCommand(sql, connection);
-                cmd.Parameters.Add("@param1", SqlDbType.Int).Value = level.LevelId;
                 cmd.Parameters.Add("@param2", SqlDbType.NVarChar, 50).Value = level.LevelName;
                
-                cmd.Parameters.Add("@param3", SqlDbType.Int).Value = level.ParentId;
+                cmd.Parameters.Add("@param3", SqlDbType.Int).Value = level.ParentId ?? (object)DBNull.Value;
                 cmd.Parameters.Add("@param4", SqlDbType.VarChar, 5).Value = level.LevelIMSId;
 
                 cmd.CommandType = CommandType.Text;
