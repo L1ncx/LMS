@@ -55,7 +55,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RiskAssessment.Web\RiskAssessment.Web.csproj">
+    <ProjectReference Include="..\Infor.LMS.Web\Infor.LMS.Web.csproj">
       <Project>{d27ac0fc-d228-4531-a367-2f403528cd97}</Project>
       <Name>RiskAssessment.Web</Name>
     </ProjectReference>

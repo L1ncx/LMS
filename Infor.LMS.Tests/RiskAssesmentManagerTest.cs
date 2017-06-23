@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RiskAssessment.Web.Controllers;
+using RiskAssessment.Web.Models;
 using RiskAssessment.Web.Managers;
 using RiskAssessment.Web.Models;
 
