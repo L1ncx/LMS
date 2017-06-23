@@ -5,30 +5,17 @@ using System.Web;
 
 namespace RiskAssessment.Web.Models
 {
-    public class LevelModel
-    {
-        public int LevelId { get; set; }
-        public string LevelName { get; set; }
-        public int? ParentId { get; set; }
-        public string LevelIMSId { get; set; }
-    }
-
+   
     public class LevelViewModel
     {
-        public LevelViewModel()
-        {
-            Levels = new List<LevelModel>();
-            AddLevel = new AddLevelModel();
-        }
-        public List<LevelModel> Levels { get; set; }
-        public AddLevelModel AddLevel { get; set; }
+        public AddLevelViewModel AddLevel { get; set; }
 
     }
 
     /// <summary>
     /// For JS Tree
     /// </summary>
-    public class JsTreeModel
+    public class LevelTreeModel
     {
         public string id { get; set; }
         public string parent { get; set; }

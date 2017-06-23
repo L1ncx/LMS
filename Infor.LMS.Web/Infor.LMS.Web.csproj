@@ -157,8 +157,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Managers\ICustomerRiskAssesmentManager.cs" />
-    <Compile Include="Models\CustomerViewModel.cs" />
-    <Compile Include="Models\LevelModel.cs" />
+    <Compile Include="Models\LevelViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -204,7 +203,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\AddEmployee.cshtml" />
+    <Content Include="Views\Home\AddLevel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

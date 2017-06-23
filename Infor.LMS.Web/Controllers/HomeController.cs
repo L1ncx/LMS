@@ -1,32 +1,28 @@
 ﻿using System;
-using Microsoft.VisualBasic.FileIO;
-using RiskAssessment.Web.Models;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Infor.LMS.Core;
-using RiskAssessment.Web.Managers;
+using RiskAssessment.Web.Models;
 
-namespace RiskAssessment.Web.Models
+namespace RiskAssessment.Web.Controllers
 {
     public class HomeController : Controller
     {
-
         public ActionResult Index()
         {
             var levelManager = new LevelManager();
 
-            var levels = levelManager.GetAllLevels().Select(l => new LevelModel()
-            {
-                LevelId = l.LevelId,
-                LevelName = l.LevelName
-            }).ToList();
+            var levels = levelManager.GetAllLevels()
+                .Select(l => new SelectListItem
+                    {Text = l.LevelName, Value = l.LevelId.ToString()})
+                .ToList();
 
-            var addNewLevel = new AddLevelModel()
+            var addNewLevel = new AddLevelViewModel()
             {
-                ParentLevels = levels.Select(l => new SelectListItem() { Text = l.LevelName, Value = l.LevelId.ToString() }).ToList()
+                ParentLevels = levels
             };
-            return View(new LevelViewModel() { Levels =  levels, AddLevel = addNewLevel });
+
+            return View(new LevelViewModel() {  AddLevel = addNewLevel });
         }
 
         public ActionResult GetLevels()
@@ -34,7 +30,7 @@ namespace RiskAssessment.Web.Models
             var levelManager = new LevelManager();
 
             var levels = levelManager.GetAllLevels()
-                .Select(s => new JsTreeModel()
+                .Select(s => new LevelTreeModel()
                 {
                     id = s.LevelId.ToString(),
                     parent = s.ParentId == null ? "#" : s.ParentId.GetValueOrDefault().ToString(),
@@ -46,7 +42,7 @@ namespace RiskAssessment.Web.Models
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddLevel(AddLevelModel levelViewModel)
+        public ActionResult AddLevel(AddLevelViewModel levelViewModel)
         {
             try
             {
