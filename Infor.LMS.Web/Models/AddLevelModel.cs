@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Net.Mime;
 using System.Web.Mvc;
-using System.Web.Mvc.Html;
 
-namespace RiskAssessment.Web.Models
+namespace Infor.LMS.Web.Models
 {
     public class AddLevelViewModel
     {

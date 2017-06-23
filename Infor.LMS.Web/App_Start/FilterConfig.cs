@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace RiskAssessment.Web
+namespace Infor.LMS.Web
 {
     public class FilterConfig
     {

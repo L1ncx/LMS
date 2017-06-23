@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace RiskAssessment.Web.Models
+﻿namespace Infor.LMS.Web.Models
 {
    
     public class LevelViewModel

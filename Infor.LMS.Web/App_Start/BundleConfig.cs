@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace RiskAssessment.Web
+namespace Infor.LMS.Web
 {
     public class BundleConfig
     {

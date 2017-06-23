@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Web.Mvc;
 using Infor.LMS.Core;
-using RiskAssessment.Web.Models;
+using Infor.LMS.Web.Models;
 
-namespace RiskAssessment.Web.Controllers
+namespace Infor.LMS.Web.Controllers
 {
     public class HomeController : Controller
     {
